@@ -1,5 +1,5 @@
 {
-    "name": "gz_harmonic",
+    "name": "gz_jetty",
     "dockerComposeFile": "../docker-compose.yaml",
     "service": "gazebo",
     "shutdownAction": "stopCompose",
