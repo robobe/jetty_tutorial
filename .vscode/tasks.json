@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Create",
+            "type": "shell",
+            "command": "python3 ${workspaceFolder}/scripts/create.py",
+            "options": {
+                "statusbar": {
+                    "color": "#22C1D6"
+                }
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "proto",
+            "type": "shell",
+            "command": "source ${workspaceFolder}/venv/bin/activate && protoc -I. --python_out=../generated --mypy_out=../generated gz/msgs/*.proto && sudo cp ${workspaceFolder}/generated/gz/msgs/*.pyi /usr/lib/python3/dist-packages/gz/msgs/",
+            "options": {
+                "cwd": "${workspaceFolder}/proto",
+                "statusbar": {
+                    "color": "#FF512F"
+                }
+            },
+            "problemMatcher": []
+        }
+    ]
+}

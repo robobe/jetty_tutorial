@@ -1,0 +1,5 @@
+{
+  "key": "ctrl+shift+z",             // <-- your shortcut
+  "command": "workbench.action.tasks.runTask",
+  "args": "proto"      // <-- EXACT task label
+}
