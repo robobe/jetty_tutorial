@@ -23,6 +23,19 @@
                 }
             },
             "problemMatcher": []
-        }
+        },
+        {
+            "label": "World",
+            "type": "shell",
+            "command": "gz sim -v 4 -r ${workspaceFolder}/worlds/rrbot.sdf",
+            "options": {
+                "statusbar": {
+                    "color": "#6ad622"
+                }
+            },
+            "problemMatcher": []
+        },
+
+        
     ]
 }

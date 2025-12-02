@@ -92,3 +92,10 @@ protoc \
 
 sudo cp generated/gz/msgs/*.pyi /usr/lib/python3/dist-packages/gz/msgs/
 ```
+
+---
+
+```
+gz topic -t "/joint1_cmd" -m gz.msgs.Double -p "data: -1.0"
+gz topic -t "/joint1_cmd" -m gz.msgs.Double -p "data: 1.0"
+```

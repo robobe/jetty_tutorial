@@ -1,88 +1,205 @@
 <?xml version="1.0"?>
 <sdf version="1.8">
-    <model name="box">
-
-        <static>false</static>
-        <link name="link">
-            <inertial>
-                <mass>1.0</mass>
-                <inertia>
-                    <ixx>1.0</ixx>
-                    <iyy>1.0</iyy>
-                    <izz>1.0</izz>
-                    <ixy>0.0</ixy>
-                    <ixz>0.0</ixz>
-                    <iyz>0.0</iyz>
-                </inertia>
-            </inertial>
-
-            <collision name="collision">
-                <geometry>
-                    <box>
-                        <size>3 2 5</size>
-                    </box>
-                </geometry>
-            </collision>
-            <visual name="visual">
-                <geometry>
-                    <box>
-                        <size>3 2 5</size>
-                    </box>
-                </geometry>
-                <material>
-                    <ambient>0.0 1 0.0 1</ambient>
-                    <diffuse>0.0 1 0.0 1</diffuse>
-                    <specular>0.0 1 0.0 1</specular>
-                </material>
-            </visual>
-        </link>
-        <link name="link1">
-            <pose>0 0 3 0 0 0</pose>
-            <inertial>
-                <mass>1.0</mass>
-                <inertia>
-                    <ixx>1.0</ixx>
-                    <iyy>1.0</iyy>
-                    <izz>1.0</izz>
-                    <ixy>0.0</ixy>
-                    <ixz>0.0</ixz>
-                    <iyz>0.0</iyz>
-                </inertia>
-            </inertial>
-
-            <collision name="collision">
-                <geometry>
-                    <box>
-                        <size>1 1 1</size>
-                    </box>
-                </geometry>
-            </collision>
-            <visual name="visual">
-                <geometry>
-                    <box>
-                        <size>1 1 1</size>
-                    </box>
-                </geometry>
-                <material>
-                    <ambient>1.0 0 0.0 1</ambient>
-                    <diffuse>1.0 0 0.0 1</diffuse>
-                    <specular>1.0 0 0.0 1</specular>
-                </material>
-            </visual>
-        </link>
-        <joint name="joint1" type="revolute">
-            <parent>link</parent>
+    <model name='rrbot'>
+        <joint name="w2r" type="fixed">
+            <parent>world</parent>
             <child>link1</child>
-            <pose>0 0 0.5 0 0 0</pose>
-            <!-- Axis of rotation in the child link frame -->
+        </joint>
+        <link name='link1'>
+            <pose>0 0 0 0 -0 1.575</pose>
+            <inertial>
+                <pose>0 0 1 0 -0 0</pose>
+                <mass>1</mass>
+                <inertia>
+                    <ixx>0.334167</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.334167</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00166667</izz>
+                </inertia>
+            </inertial>
+            <collision name='link1_collision'>
+                <pose>0 0 1 0 -0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 2</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name='link1_visual'>
+                <pose>0 0 1 0 -0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 2</size>
+                    </box>
+                </geometry>
+                <material>
+                    <diffuse> 1 0.423529412 0.039215686 1</diffuse>
+                    <ambient> 1 0.423529412 0.039215686 1</ambient>
+                    <specular>1 0.423529412 0.039215686 1</specular>
+                </material>
+            </visual>
+        </link>
+        <joint name='joint1' type='revolute'>
+            <pose relative_to='link1'>0 0.1 1.95 0 -0 0</pose>
+            <parent>link1</parent>
+            <child>link2</child>
             <axis>
-                <xyz>0 0 1</xyz>   <!-- rotate around Z axis -->
+                <xyz>0 1 0</xyz>
                 <limit>
-                    <lower>-1.57</lower>   <!-- -90° -->
-                    <upper>1.57</upper>    <!-- +90° -->
+                    <lower>-1e+16</lower>
+                    <upper>1e+16</upper>
+                    <effort>1000</effort>
                 </limit>
+                <dynamics>
+                    <damping>0.7</damping>
+                    <friction>0.0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
             </axis>
         </joint>
+        <link name='link2'>
+            <pose relative_to='joint1'>0 0 0 0 -0 0</pose>
+            <inertial>
+                <pose>0 0 0.45 0 -0 0</pose>
+                <mass>1</mass>
+                <inertia>
+                    <ixx>0.0841667</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.0841667</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.00166667</izz>
+                </inertia>
+            </inertial>
+            <collision name='link2_collision'>
+                <pose>0 0 0.45 0 -0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 1</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name='link2_visual'>
+                <pose>0 0 0.45 0 -0 0</pose>
+                <geometry>
+                    <box>
+                        <size>0.1 0.1 1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <diffuse> 0 0 0 1</diffuse>
+                    <ambient> 0 0 0 1</ambient>
+                    <specular>0 0 0 1</specular>
+                </material>
+            </visual>
+            <sensor name="imu_sensor" type="imu">
+                <always_on>1</always_on>
+                <update_rate>1</update_rate>
+                <visualize>true</visualize>
+                <topic>imu</topic>
+            </sensor>
+        </link>
+        <!-- <joint name='joint2' type='revolute'>
+      <pose relative_to='link2'>0 0.1 0.9 0 -0 0</pose>
+      <parent>link2</parent>
+      <child>link3</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <damping>0.7</damping>
+          <friction>0.0</friction>          
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint> -->
+        <!-- <link name='link3'>
+      <pose relative_to='joint2'>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose>0 0 0.45 0 -0 0</pose>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.0841667</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0841667</iyy>
+          <iyz>0</iyz>
+          <izz>0.00166667</izz>
+        </inertia>
+      </inertial>
+      <collision name='link3_collision'>
+        <pose>0 0 0.45 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.1 1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='link3_visual'>
+        <pose>0 0 0.45 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.1 1</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse> 1 0.423529412 0.039215686 1</diffuse>
+          <ambient> 1 0.423529412 0.039215686 1</ambient>
+          <specular>1 0.423529412 0.039215686 1</specular>
+        </material>
+      </visual>
+    </link> -->
+    <!-- 
+    gz topic -t "/joint1_cmd" -m gz.msgs.Double -p "data: -1.0"
+gz topic -t "/joint1_cmd" -m gz.msgs.Double -p "data: 1.0"
+    -->
+    <!-- <plugin
+        filename="gz-sim-joint-position-controller-system"
+        name="gz::sim::systems::JointPositionController">
+        <joint_name>joint1</joint_name>
+        <topic>joint1_cmd</topic>
+        <p_gain>100</p_gain>
+        <i_gain>0.1</i_gain>
+        <d_gain>0.01</d_gain>
+        <i_max>1</i_max>
+        <i_min>-1</i_min>
+        <cmd_max>1000</cmd_max>
+        <cmd_min>-1000</cmd_min>
+      </plugin> -->
 
+      <!--
+  Gazebo apply joint force system demo
+
+  Try sending commands:
+
+  This will apply a constant force on the joint
+    gz topic -t "/model/my_model/joint/joint1/cmd_force" -m gz.msgs.Double  -p "data: 0.001"
+
+  This will stop applying the force. The joint may continue to rotate for some time before coming to a stop
+    gz topic -t "/model/my_model/joint/joint1/cmd_force" -m gz.msgs.Double  -p "data: 0.0"
+-->
+      <plugin
+        filename="gz-sim-apply-joint-force-system"
+        name="gz::sim::systems::ApplyJointForce">
+        <joint_name>joint1</joint_name>
+      </plugin>
+
+       <!-- Force mode -->
+      <plugin
+        filename="gz-sim-joint-controller-system"
+        name="gz::sim::systems::JointController">
+        <joint_name>j1</joint_name>
+        <use_force_commands>true</use_force_commands>
+        <p_gain>0.2</p_gain>
+        <i_gain>0.01</i_gain>
+      </plugin>
+      
     </model>
 </sdf>

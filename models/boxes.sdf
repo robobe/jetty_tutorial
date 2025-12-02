@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+    <model name="box">
+
+        <static>false</static>
+        <link name="link">
+            <inertial>
+                <mass>1.0</mass>
+                <inertia>
+                    <ixx>1.0</ixx>
+                    <iyy>1.0</iyy>
+                    <izz>1.0</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                </inertia>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>3 2 5</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>3 2 5</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>0.0 1 0.0 1</ambient>
+                    <diffuse>0.0 1 0.0 1</diffuse>
+                    <specular>0.0 1 0.0 1</specular>
+                </material>
+            </visual>
+        </link>
+        <link name="link1">
+            <pose>0 0 3 0 0 0</pose>
+            <inertial>
+                <mass>1.0</mass>
+                <inertia>
+                    <ixx>1.0</ixx>
+                    <iyy>1.0</iyy>
+                    <izz>1.0</izz>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyz>0.0</iyz>
+                </inertia>
+            </inertial>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>1 1 1</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>1 1 1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <ambient>1.0 0 0.0 1</ambient>
+                    <diffuse>1.0 0 0.0 1</diffuse>
+                    <specular>1.0 0 0.0 1</specular>
+                </material>
+            </visual>
+        </link>
+        <joint name="joint1" type="revolute">
+            <parent>link</parent>
+            <child>link1</child>
+            <pose>0 0 0.5 0 0 0</pose>
+            <!-- Axis of rotation in the child link frame -->
+            <axis>
+                <xyz>0 0 1</xyz>   <!-- rotate around Z axis -->
+                <limit>
+                    <lower>-1.57</lower>   <!-- -90° -->
+                    <upper>1.57</upper>    <!-- +90° -->
+                </limit>
+            </axis>
+        </joint>
+
+    </model>
+</sdf>
