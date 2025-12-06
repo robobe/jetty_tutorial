@@ -6,5 +6,6 @@
   ],
   "files.associations": {
     "*.sdf": "xml"
-  }
+  },
+  
 }

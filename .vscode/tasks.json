@@ -31,6 +31,9 @@
             "options": {
                 "statusbar": {
                     "color": "#6ad622"
+                },
+                "env": {
+                    "GZ_SIM_SYSTEM_PLUGIN_PATH": "${workspaceFolder}/bin"
                 }
             },
             "problemMatcher": []

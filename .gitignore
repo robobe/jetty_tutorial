@@ -1,2 +1,4 @@
 .gz/
 venv/
+build/
+bin/
